@@ -12,8 +12,8 @@ echo "Get LaBSE end"
 
 wait
 
-unzip DBP15K.zip &
-unzip DWY100K.zip &
-unzip LaBSE.zip &
+unzip DBP15K.zip && rm DBP15K.zip
+unzip DWY100K.zip && rm DWY100K.zip
+unzip LaBSE.zip && rm LaBSE.zip
 
 wait

@@ -1,0 +1,26 @@
+version: '3'
+services:
+  selfkg:
+    container_name: selfkg-notebook
+    # build:
+    #   dockerfile: docker/notebook.Dockerfile
+    #   context: .
+    image: "minhhoangdang/colab-backend:amd64-gpu"
+    #image: "cschranz/gpu-jupyter:v1.4_cuda-11.2_ubuntu-20.04_python-only"
+    network_mode: "host"
+    #ports:
+    #  - "8888:8888"
+    volumes:
+      - "./:/content/SelfKG/"
+    environment:
+      - GRANT_SUDO=yes
+      - JUPYTER_ENABLE_LAB=yes
+    user: root
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: /bin/bash -c "jupyter lab --allow-root --no-browser --ServerApp.allow_origin=https://colab.research.google.com --ip=0.0.0.0 --port=8888 --ServerApp.port_retries=0 --NotebookApp.password=''"

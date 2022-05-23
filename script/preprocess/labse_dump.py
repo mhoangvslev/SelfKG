@@ -36,7 +36,7 @@ import argparse
 from datetime import datetime
 
 # using labse
-from transformers import *
+from transformers import AutoTokenizer, AutoModel
 import torch
 
 import pickle
